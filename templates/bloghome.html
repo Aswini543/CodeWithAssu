@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block blogactive %}active{% endblock blogactive %}
+{% block css %}
+<style>
+    .container{
+        min-height:90vh;
+    }
+
+</style>
+
+{% endblock css %}
+{% block title %}Blog{% endblock title %}
+{% block body %}
+<div class='container'>
+    <h1>Welcome to Code With Assu</h1>
+    {% for blog in blogs %}
+    <div class="my-2">
+        
+        <h3 class="mt-0 "><a href='/blogpost/{{blog.slug}}' class="text-dark">{{blog.title}}</a></h3>
+        <div class='my-2'>
+            {{blog.short_desc|slice:245}}...
+        </div>
+        <a href='/blogpost/{{blog.slug}}' class="text-dark"><button class="btn btn-outline-primary btn-sm">Read More...</button></a>
+        
+    </div>
+
+    {% endfor %}
+
+    <div class='my-3'>
+        {% if prev %}
+        <button class='btn btn-success '><a class='text-light' href='/blog?page={{prev}}'>&laquo; Previous</a></button>
+        
+        {% else%}
+        <button class='btn btn-success'><a class='text-light' href='#'>&laquo; Previous</a></button>
+        {% endif %}
+
+        {% if nxt %}
+        <button class='btn btn-success float-right'><a class='text-light' href='/blog?page={{nxt}}'>Next &raquo; </a></button>
+        
+        {% else%}
+        <button class='btn btn-success float-right'><a class='text-light' href='#'>Next &raquo; </a></button>
+
+        {% endif %}
+    </div>
+</div>
+{% endblock body %}
+
+
+
+
+
